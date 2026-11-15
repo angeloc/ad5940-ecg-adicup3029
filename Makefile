@@ -8,8 +8,8 @@
 #   make clean
 #
 # Works with GNU make on Linux and on Windows (cmd.exe, with the curl and tar
-# shipped with Windows 10 or later). Use CROSS=arm-none-eabi- to build with a
-# toolchain already in the PATH.
+# shipped with Windows 10 or later; install.bat installs make and Python).
+# Use CROSS=arm-none-eabi- to build with a toolchain already in the PATH.
 
 APP ?= EcgStream
 BUILD ?= build
@@ -39,7 +39,7 @@ RMDIR = if exist "$(call P,$1)" rmdir /s /q "$(call P,$1)"
 UNZIP = tar -xf "$1" -C "$2"
 COPY = copy /y "$(call P,$1)" "$(call P,$2)"
 DAPLINK ?=
-PYTHON ?= python
+PYTHON ?= py -3
 else
 EXE :=
 TC_FILE := arm-gnu-toolchain-13.2.rel1-x86_64-arm-none-eabi.tar.xz
