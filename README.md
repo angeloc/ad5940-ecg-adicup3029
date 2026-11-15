@@ -69,12 +69,25 @@ by hand apart from the tools below.
 
 They go to `.deps/` (`DEPS=` changes the place), which is not tracked by git.
 
-Tools needed:
+### Windows quick start
+
+In a Command Prompt or PowerShell window, in the project folder:
+
+```
+install.bat               # GNU make and Python 3.14 with winget, pyserial, then "make deps"
+```
+
+Then open a new terminal (so that the newly installed tools are on the PATH) and use `make`,
+`make flash DAPLINK=E:` and `make view` as below. `install.bat` skips what is already installed.
+It has not been run on a Windows machine yet.
+
+### Tools
+
 
 - Linux: GNU make, curl, tar, unzip.
-- Windows: GNU make for Windows; curl and tar are the ones shipped with Windows 10 or later. The
-  Makefile runs its commands with `cmd.exe`. The Windows side follows the same rules as the Linux
-  one but has not been run on a Windows machine yet.
+- Windows: GNU make for Windows (winget package `ezwinports.make`); curl and tar are the ones
+  shipped with Windows 10 or later. The Makefile runs its commands with `cmd.exe`. The Windows
+  side follows the same rules as the Linux one but has not been run on a Windows machine yet.
 
 ```
 make deps                 # only download
@@ -99,7 +112,7 @@ is 230400 baud; only one program can read it at a time.
 
 `ecg_view.py` plots the stream in a scrolling window. It is one Python file that runs unchanged on
 Linux, Windows and macOS; it needs Python 3 with Tk (part of the python.org installer on Windows,
-`python3-tk` on Debian/Ubuntu) and pyserial.
+`python3-tk` on Debian/Ubuntu) and pyserial. On Windows the Makefile starts it with `py -3`.
 
 ```
 make view                 # installs pyserial if missing, then starts the viewer
